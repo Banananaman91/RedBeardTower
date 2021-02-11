@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
@@ -11,39 +10,86 @@ public class ObjectPlacementController : MonoBehaviour
     [SerializeField]
     private GameObject placedPrefab;
 
-    public GameObject PlacedPrefab { get; set; }
+    [SerializeField]
+    private Camera arCamera;
 
-    private ARRaycastManager aRRaycastManager;
+    private Vector2 touchPosition = default;
 
-    static List<ARRaycastHit> hits = new List<ARRaycastHit>();
+    private ARRaycastManager arRaycastManager;
 
+    private static List<ARRaycastHit> hits = new List<ARRaycastHit>();
 
-    private void Awake()
+    private PlacementObject lastSelectedObject;
+
+    private GameObject PlacedPrefab{ get; set; }
+
+    void Awake()
     {
-        aRRaycastManager = GetComponent<ARRaycastManager>();
+        arRaycastManager = GetComponent<ARRaycastManager>();
     }
-
-    bool TryGetTouchPosition(out Vector2 touchPosition)
-    {
-        if(Input.touchCount > 0)
-        {
-            touchPosition = Input.GetTouch(0).position;
-            return true;
-        }
-        touchPosition = default;
-        return false;
-    }
-
 
     void Update()
     {
-        if (!TryGetTouchPosition(out Vector2 touchPosition)) return;
+        GetObjPosFromScreen();
+        PlaceObjectsinScene();
+    }
 
-        if (aRRaycastManager.Raycast(touchPosition, hits, TrackableType.PlaneWithinBounds))
+
+    private void GetObjPosFromScreen()
+    {
+        if (Input.touchCount > 0)
         {
-            var hitPose = hits[0].pose;
+            Touch touch = Input.GetTouch(0);
 
-            Instantiate(placedPrefab, hitPose.position, hitPose.rotation);
+            touchPosition = touch.position;
+
+            if (touch.phase == TouchPhase.Began)
+            {
+                Ray ray = arCamera.ScreenPointToRay(touch.position);
+                RaycastHit hitObject;
+                if (Physics.Raycast(ray, out hitObject))
+                {
+                    lastSelectedObject = hitObject.transform.GetComponent<PlacementObject>();
+
+                    if (lastSelectedObject != null)
+                    {
+                        lastSelectedObject.GetComponent<Renderer>().material.color = Color.red;
+                        PlacementObject[] allOtherObjects = FindObjectsOfType<PlacementObject>();
+                        foreach (PlacementObject placementObject in allOtherObjects)
+                        {
+                            placementObject.IsSelected = placementObject == lastSelectedObject;
+                        }
+                    }
+                }
+            }
+
+            if (touch.phase == TouchPhase.Ended)
+            {
+                lastSelectedObject.GetComponent<Renderer>().material.color = Color.green;
+                lastSelectedObject.IsSelected = false;
+            }
+        }
+    }
+   
+
+    private void PlaceObjectsinScene()
+    {
+        if (arRaycastManager.Raycast(touchPosition, hits, TrackableType.PlaneWithinPolygon))
+        {
+            Pose hitPose = hits[0].pose;
+
+            if (lastSelectedObject == null)
+            {
+                lastSelectedObject = Instantiate(placedPrefab, hitPose.position, hitPose.rotation).GetComponent<PlacementObject>();
+            }
+            else
+            {
+                if (lastSelectedObject.IsSelected)
+                {
+                    lastSelectedObject.transform.position = hitPose.position;
+                    lastSelectedObject.transform.rotation = hitPose.rotation;
+                }
+            }
         }
     }
 }
