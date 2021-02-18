@@ -106,15 +106,15 @@ NavMeshSettings:
   m_BuildSettings:
     serializedVersion: 2
     agentTypeID: 0
-    agentRadius: 0.5
-    agentHeight: 2
-    agentSlope: 45
-    agentClimb: 0.4
+    agentRadius: 0.05
+    agentHeight: 0.1
+    agentSlope: 0
+    agentClimb: 1
     ledgeDropHeight: 0
     maxJumpAcrossDistance: 0
     minRegionArea: 2
     manualCellSize: 0
-    cellSize: 0.16666667
+    cellSize: 0.016666668
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
@@ -423,6 +423,49 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_RaycastPrefab: {fileID: 0}
+--- !u!1 &692939825
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 692939827}
+  - component: {fileID: 692939826}
+  m_Layer: 0
+  m_Name: EnemyManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &692939826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 692939825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb054d8b98d196d47a0a87b9b6cf9ce7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &692939827
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 692939825}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2145493060
 GameObject:
   m_ObjectHideFlags: 0
@@ -531,8 +574,26 @@ PrefabInstance:
     - target: {fileID: 1206967589762530988, guid: 46a6f593a86e5ce4aaa4806dea36813e,
         type: 3}
       propertyPath: startingPlatformCount
-      value: 300
+      value: 600
       objectReference: {fileID: 0}
+    - target: {fileID: 1206967589762530988, guid: 46a6f593a86e5ce4aaa4806dea36813e,
+        type: 3}
+      propertyPath: navMeshSurface
+      value: 
+      objectReference: {fileID: 8320156828387653349, guid: f69547a26cca5914096885c772435263,
+        type: 3}
+    - target: {fileID: 1206967589762530988, guid: 46a6f593a86e5ce4aaa4806dea36813e,
+        type: 3}
+      propertyPath: enemy
+      value: 
+      objectReference: {fileID: 7686423087586473264, guid: 837e7f613abd081418d31ba9edf9273e,
+        type: 3}
+    - target: {fileID: 1206967589762530988, guid: 46a6f593a86e5ce4aaa4806dea36813e,
+        type: 3}
+      propertyPath: basicEnemyPrefab
+      value: 
+      objectReference: {fileID: 7686423087586473264, guid: 837e7f613abd081418d31ba9edf9273e,
+        type: 3}
     - target: {fileID: 1206967589762530989, guid: 46a6f593a86e5ce4aaa4806dea36813e,
         type: 3}
       propertyPath: m_Name
