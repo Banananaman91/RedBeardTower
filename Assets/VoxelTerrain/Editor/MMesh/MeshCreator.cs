@@ -66,14 +66,14 @@ namespace VoxelTerrain.Editor.MMesh
 
         public async void SetMesh(float[] Voxels, float x, float y, float z, float size)
         {
-            MarchingCubes(size, new Vector3(x, y, z), true);
-            /*
+            //MarchingCubes(size, new Vector3(x, y, z), true);
+            
             Vertices.Clear();
             Triangles.Clear();
             Colors.Clear();
             
             await SetMeshData(Voxels, x, y, z, size);
-            */
+            
             
             //_chunk.CreateMesh();
         }
