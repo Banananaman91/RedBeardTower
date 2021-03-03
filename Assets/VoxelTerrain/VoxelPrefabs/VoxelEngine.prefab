@@ -1,0 +1,127 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1219288309473230982
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1219288309473230980}
+  - component: {fileID: 1219288309473230983}
+  - component: {fileID: 7941170911782372760}
+  - component: {fileID: 7941170911782372763}
+  - component: {fileID: 7941170911782372762}
+  - component: {fileID: 7941170911782372765}
+  - component: {fileID: 7941170911782372764}
+  m_Layer: 0
+  m_Name: VoxelEngine
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1219288309473230980
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1219288309473230982}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1219288309473230983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1219288309473230982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b650019544c210a4a8945ae2b27800be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _worldInfo: {fileID: 7941170911782372762}
+  _chunkInfo: {fileID: 7941170911782372763}
+  _voxelTypeHeights: {fileID: 7941170911782372760}
+  _worldGeneration: {fileID: 7941170911782372765}
+  _noiseScale: 0
+--- !u!114 &7941170911782372760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1219288309473230982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b3abc42d208768438f0c76f50de5335, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _stoneDepth: 5
+  _snowHeight: 10
+  _caveStartHeight: -5
+--- !u!114 &7941170911782372763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1219288309473230982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0aaaa37e99af534db0bf50bb610b317, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _chunkPrefab: {fileID: 5807394119334776112, guid: 9b9ced7c5de5dc94dbe09cac2c11378b,
+    type: 3}
+  _voxelSize: 1
+--- !u!114 &7941170911782372762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1219288309473230982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99accc2e46a2126489cb11755851112f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _material: {fileID: 2100000, guid: 07a6c4bab4ac7e44cab965e02712bc17, type: 2}
+  _distance: 64
+  _height: 0
+  _origin: {fileID: 0}
+--- !u!114 &7941170911782372765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1219288309473230982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b192b8717d5d084f987ef3f76e81900, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _engine: {fileID: 1219288309473230983}
+  _chunkGenerator: {fileID: 7941170911782372764}
+--- !u!114 &7941170911782372764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1219288309473230982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2561c33dc29b8d4b84f55457f7f718f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
