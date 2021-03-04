@@ -9,23 +9,20 @@ public class ObjectPlacementController : MonoBehaviour
 {
     [SerializeField]
     private GameObject placedPrefab;
+    
 
     [SerializeField]
     private Camera arCamera;
-
     private Vector2 touchPosition = default;
-
     private ARRaycastManager arRaycastManager;
-
     private static List<ARRaycastHit> hits = new List<ARRaycastHit>();
-
     private PlacementObject lastSelectedObject;
-
     private GameObject PlacedPrefab{ get; set; }
 
     void Awake()
     {
         arRaycastManager = GetComponent<ARRaycastManager>();
+        
     }
 
     void Update()
@@ -92,4 +89,6 @@ public class ObjectPlacementController : MonoBehaviour
             }
         }
     }
+
+  
 }

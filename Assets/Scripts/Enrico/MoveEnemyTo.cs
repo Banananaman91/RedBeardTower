@@ -12,7 +12,7 @@ public class MoveEnemyTo : MonoBehaviour
         NavMeshAgent agent = GetComponent<NavMeshAgent>();
 
         var lastPlatformTrans = PathGenerator.PathTransforms.Count - 1;
-        goal = PathGenerator.PathTransforms[lastPlatformTrans];
+        goal = PathGenerator.PathTransforms[lastPlatformTrans].transform.position;
 
         agent.destination = goal;
     }
