@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Platform
   - Destination
+  - StartPos
   layers:
   - Default
   - TransparentFX

@@ -43,6 +43,7 @@ public class ObjectPlacementController : MonoBehaviour
             if (touch.phase == TouchPhase.Began)
             {
                 Ray ray = arCamera.ScreenPointToRay(touch.position);
+                
                 RaycastHit hitObject;
                 if (Physics.Raycast(ray, out hitObject))
                 {

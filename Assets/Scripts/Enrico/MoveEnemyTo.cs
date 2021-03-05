@@ -5,15 +5,14 @@ using UnityEngine.AI;
 
 public class MoveEnemyTo : MonoBehaviour
 {
-    Vector3 goal;
+    GameObject goal;
 
-    private void Start()
+    private void Update()
     {
         NavMeshAgent agent = GetComponent<NavMeshAgent>();
 
-        var lastPlatformTrans = PathGenerator.PathTransforms.Count - 1;
-        goal = PathGenerator.PathTransforms[lastPlatformTrans].transform.position;
+        goal = GameObject.FindObjectOfType<GoalHolder>().gameObject;
 
-        agent.destination = goal;
+        agent.destination = goal.transform.position;
     }
 }

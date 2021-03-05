@@ -22,7 +22,7 @@ public class PlaneAreaManager : MonoBehaviour
                         var planeAreaBehaviour = raycastHit.collider.gameObject.GetComponent<PlaneAreaBehaviour>();
                         if (planeAreaBehaviour != null)
                         {
-                            planeAreaBehaviour.ToggleAreaView();
+                            //planeAreaBehaviour.ToggleAreaView();
                         }
                     }
                 }
