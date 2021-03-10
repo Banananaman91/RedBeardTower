@@ -12,13 +12,16 @@ public class NewObjPlacement : MonoBehaviour
 
     private GameObject spwanedObjs;
     private ARRaycastManager raycastManager;
+
     Vector2 touchPos;
 
     static List<ARRaycastHit> hits = new List<ARRaycastHit>();
 
+    ARPlaneManager aRPlaneManager;
     private void Awake()
     {
         raycastManager = GetComponent<ARRaycastManager>();
+        aRPlaneManager = GetComponent<ARPlaneManager>();
     }
 
     bool TryGetTouchPos( out Vector2 touchPosition)
@@ -44,6 +47,12 @@ public class NewObjPlacement : MonoBehaviour
             if( spwanedObjs == null)
             {
                 spwanedObjs = Instantiate(ObjtoSpawn, hitPose.position, hitPose.rotation);
+
+                foreach(var plane in aRPlaneManager.trackables)
+                {
+                    plane.gameObject.SetActive(false);
+                    aRPlaneManager.enabled = !aRPlaneManager.enabled;
+                }
             }
         }
     }

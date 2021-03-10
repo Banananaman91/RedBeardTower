@@ -11,7 +11,7 @@ public class EnemyManager : MonoBehaviour
 
     private void Start()
     {
-        InvokeRepeating("spawn", 0, 3);
+        InvokeRepeating("spawn", 5, 3);
     }
 
     private void Update()

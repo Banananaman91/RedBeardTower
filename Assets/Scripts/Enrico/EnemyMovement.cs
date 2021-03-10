@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class MoveEnemyTo : MonoBehaviour
+public class EnemyMovement : MonoBehaviour
 {
     GameObject goal;
 
