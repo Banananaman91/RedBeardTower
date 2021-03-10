@@ -21,7 +21,6 @@ public class NewObjPlacement : MonoBehaviour
         raycastManager = GetComponent<ARRaycastManager>();
     }
 
-
     bool TryGetTouchPos( out Vector2 touchPosition)
     {
         if(Input.touchCount > 0)
@@ -33,7 +32,6 @@ public class NewObjPlacement : MonoBehaviour
         return false;
     }
     
-
     // Update is called once per frame
     void Update()
     {

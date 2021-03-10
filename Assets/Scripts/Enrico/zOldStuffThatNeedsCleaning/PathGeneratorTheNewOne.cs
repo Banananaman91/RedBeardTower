@@ -7,7 +7,7 @@ using UnityEngine.UI;
 using UnityEngine.XR.ARFoundation;
 using Random = UnityEngine.Random;
 
-public class PathGenerator : MonoBehaviour
+public class PathGeneratorTheNewOne : MonoBehaviour
 {
     ObjectPlacementController OP => FindObjectOfType<ObjectPlacementController>();
 
@@ -15,27 +15,27 @@ public class PathGenerator : MonoBehaviour
     [SerializeField] public GameObject currentPlatform;
     [SerializeField] private int startingPlatformCount;
     [SerializeField] private GameObject waypointPrefab;
+    [SerializeField] public GameObject NewPlane;
+    [SerializeField] public GameObject startPoint;
 
     public Text debugText;
     int nextPlatformDirection;
 
    
-    public static PathGenerator instance;
+    public static PathGeneratorTheNewOne instance;
+
     public Bounds planeBounds;
     private Vector3 midMin;
     private Vector3 midMax;
     private int wholeN;
     private int wholeNMax;
+
     public NavMeshSurface navMeshSurface;
     private EnemyManager enemyManager => FindObjectOfType<EnemyManager>();
     public GameObject basicEnemyPrefab;
     public static List<GameObject> PathTransforms;
 
-    
-    ARPlaneManager PM;
-    
-    PlaneAreaBehaviour PB;
-    bool planeFound = false;
+  
 
     private void OnEnable()
     {
@@ -47,23 +47,13 @@ public class PathGenerator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //GeneratePath();
-       // ShowNavMesh();
+        GeneratePath();
+        ShowNavMesh();
     }
 
     private void Update()
     {
-        //if (PB != null && !planeFound)
-        //{
-        //    //GeneratePlane();
-        //    planeFound = true;
-
-        //}
-        //else 
-        //{
-        //    PB = FindObjectOfType<PlaneAreaBehaviour>();
-        //}
-        ////debugText.text = "my Plane pos " + plane.transform.position + " cur Plat " + currentPlatform.transform.position;
+       
     }
     private void Init()
     {
@@ -76,7 +66,6 @@ public class PathGenerator : MonoBehaviour
     {
 
         // Set the bounds of the plane
-
         planeBounds.min = new Vector3(0, 0, 0);
         planeBounds.max = new Vector3(1f, 0, 1f);
 
@@ -168,7 +157,7 @@ public class PathGenerator : MonoBehaviour
 
         Vector3 firstPosToSpawn = PathTransforms[0].transform.position;
 
-        enemyManager.StartEnemySpawn(basicEnemyPrefab, firstPosToSpawn);
+       // enemyManager.StartEnemySpawn(basicEnemyPrefab, firstPosToSpawn);
 
        // RemovePathPlatforms(); // remove all the unnescessary tiles.. navmesh needs only the last tile to store the whole path
     }

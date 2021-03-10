@@ -9,22 +9,25 @@ public class EnemyManager : MonoBehaviour
     public GameObject startPos;
     public GameObject basicEnemy;
 
-    private void Update()
-    {
-        startPos = GameObject.FindObjectOfType<StartHolder>().gameObject ;
-        Debug.Log(startPos.transform.localPosition);
-        if( startPos!=null)
-        StartEnemySpawn(basicEnemy, startPos.transform.position);
-    }
     private void Start()
     {
-
+        InvokeRepeating("spawn", 0, 3);
     }
 
-   
-    public void StartEnemySpawn(GameObject ObjectToSpawn, Vector3 position)
+    private void Update()
     {
-        Instantiate(ObjectToSpawn, position, Quaternion.identity);
+        startPos = GameObject.FindObjectOfType<StartHolder>().gameObject;
+      
     }
+    
+    //public void StartEnemySpawn(GameObject ObjectToSpawn, Vector3 position)
+    //{
+    //    Instantiate(ObjectToSpawn, position, Quaternion.identity);
+    //}
 
+    public void spawn()
+    {
+        Instantiate(basicEnemy, startPos.transform.position, startPos.transform.rotation);
+    }
 }
+
