@@ -112,8 +112,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.2, y: 100, z: 1.2}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.912426, y: 2.1672883, z: 0.9402529}
+  m_Center: {x: 0, y: -0.2804339, z: 0}
 --- !u!208 &312171755
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -200,7 +200,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4851143048497949324}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.53, z: -0.497}
+  m_LocalPosition: {x: 0, y: 0.53, z: -0.487}
   m_LocalScale: {x: 1, y: 10, z: 1}
   m_Children: []
   m_Father: {fileID: 3772353186362423904}
@@ -229,8 +229,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.99399656, y: 0.49000007, z: 0.03}
-  m_Center: {x: -0.0023066103, y: 0, z: 0}
+  m_Size: {x: 0.11, y: 0.49000007, z: 0.03}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &2382696477856703489
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -273,7 +273,7 @@ Transform:
   m_GameObject: {fileID: 5130379132876779329}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.108, y: 0.108, z: 0.108}
   m_Children: []
   m_Father: {fileID: 3772353186362423904}
   m_RootOrder: 0
@@ -370,7 +370,7 @@ MonoBehaviour:
   m_LayerMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_UseGeometry: 1
+  m_UseGeometry: 0
   m_DefaultArea: 0
   m_IgnoreNavMeshAgent: 1
   m_IgnoreNavMeshObstacle: 1
