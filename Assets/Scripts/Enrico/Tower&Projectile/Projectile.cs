@@ -10,13 +10,4 @@ public class Projectile : MonoBehaviour
     {
         Destroy(gameObject, 5);
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.gameObject.CompareTag("Enemy"))
-        {
-            Debug.Log("hit the enemy");
-            Destroy(other.gameObject);
-        }
-    }
 }

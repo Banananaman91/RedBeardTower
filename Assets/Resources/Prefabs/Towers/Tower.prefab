@@ -242,8 +242,8 @@ MonoBehaviour:
   shootPoint: {fileID: 8158729248415829823}
   projectile: {fileID: 3426181319877448568, guid: 6234607562380224e827a7eb5ee75106,
     type: 3}
-  projectileForce: 20
-  rateOfFire: 3
+  projectileForce: 50
+  rateOfFire: 0.2
   targetToShoot: {fileID: 0}
 --- !u!135 &7796053344631182650
 SphereCollider:

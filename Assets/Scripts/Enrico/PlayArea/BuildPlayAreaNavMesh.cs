@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EzWay : MonoBehaviour
+public class BuildPlayAreaNavMesh : MonoBehaviour
 {
     NavMeshSurface navMeshSurface;
     

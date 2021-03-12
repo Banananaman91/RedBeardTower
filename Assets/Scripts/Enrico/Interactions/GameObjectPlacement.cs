@@ -14,16 +14,22 @@ public class GameObjectPlacement : MonoBehaviour
 
     public GameObject placedGameObject;
     private  Vector3 touchPositon;
+   
 
     private void Awake()
     {
         reticleUI.gameObject.SetActive(false);
     }
-   
+    private void Update()
+    {
+
+    }
+
     public void CameraRaycast()
     {
-        
+        // TO DO: loop around all touch inputs.. works better.
         reticleUI.gameObject.SetActive(true);
+
         if (Input.touchCount > 0 )
         {
             theTouch = Input.GetTouch(0);
@@ -39,9 +45,11 @@ public class GameObjectPlacement : MonoBehaviour
                             break;
 
                         case "PlayArea(Clone)":
+
                             debugText.text = "hit THE FKING PLANE";
                             reticleUI.color = Color.red;
                             Instantiate(placedGameObject, hit.point, Quaternion.identity);
+                            
                             break;
                     }
                 }
@@ -50,7 +58,12 @@ public class GameObjectPlacement : MonoBehaviour
                     reticleUI.color = Color.white;
                 }
             }
+            else
+            {
+                reticleUI.gameObject.SetActive(false);
+            }
         }
+       
     }
     private void TouchPositioRaycast()
     {

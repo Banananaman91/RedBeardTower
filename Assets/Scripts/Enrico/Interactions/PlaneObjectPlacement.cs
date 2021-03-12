@@ -5,10 +5,10 @@ using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 
 [RequireComponent(typeof(ARRaycastManager))]
-public class NewObjPlacement : MonoBehaviour
+public class PlaneObjectPlacement : MonoBehaviour
 {
 
-    public GameObject ObjtoSpawn;
+    public GameObject ObjToSpawn;
 
     private GameObject spwanedObjs;
     private ARRaycastManager raycastManager;
@@ -46,7 +46,7 @@ public class NewObjPlacement : MonoBehaviour
 
             if( spwanedObjs == null)
             {
-                spwanedObjs = Instantiate(ObjtoSpawn, hitPose.position, hitPose.rotation);
+                spwanedObjs = Instantiate(ObjToSpawn, hitPose.position, hitPose.rotation);
 
                 foreach(var plane in aRPlaneManager.trackables)
                 {

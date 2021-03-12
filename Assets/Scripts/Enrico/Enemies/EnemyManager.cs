@@ -29,5 +29,7 @@ public class EnemyManager : MonoBehaviour
     {
         Instantiate(basicEnemy, startPos.transform.position, startPos.transform.rotation);
     }
+
+    
 }
 
