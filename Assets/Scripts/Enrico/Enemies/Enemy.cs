@@ -6,17 +6,22 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
-    private GameObject goal;
 
     public HealthBar HealthBar;
     public int maxHealth = 100;
-    public int currentHealth;
+    public int coinValue;
+
+    private GameObject goal;
+    private GameManager GM;
+    private int currentHealth;
 
     private void Awake()
     {
+        GM = FindObjectOfType<GameManager>();
         currentHealth = maxHealth;
         HealthBar.SetMaxHealth(maxHealth);
     }
+
     private void Start()
     {
         SetDestination();
@@ -38,6 +43,7 @@ public class Enemy : MonoBehaviour
        
         if(currentHealth == 0)
         {
+            GM.Coins += coinValue;
             Destroy(this.gameObject, 0.1f);
         }
     }
@@ -46,6 +52,7 @@ public class Enemy : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Bullet"))
         {
+
             TakeDamageAndDestroy(10);  // Add damage according to tower type??
         }
     }

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,8 +10,9 @@ public class GameManager : MonoBehaviour
     private int lives;
     int playerCurrentLives;
 
-    [SerializeField]
     private int coins;
+    [SerializeField]
+    public Text cointText;
 
     public int Lives { get => lives; set => lives = value; }
     public int Coins { get => coins; set => coins = value; }
@@ -18,16 +20,18 @@ public class GameManager : MonoBehaviour
 
     public HealthBar playerHealtBar;
 
-    //public GameObject Tower1;
+    public int basicTowerCost = 10;
 
     private void Awake()
     {
+        Coins = 100;
         PlayerCurrentLives = Lives;
         playerHealtBar.SetMaxHealth(Lives);
     }
 
     private void Update()
     {
+        cointText.text = Coins.ToString();
         checkLife();
     }
 

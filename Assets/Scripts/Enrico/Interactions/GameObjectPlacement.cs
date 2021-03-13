@@ -14,13 +14,16 @@ public class GameObjectPlacement : MonoBehaviour
 
     public GameObject placedGameObject;
     private  Vector3 touchPositon;
-
+    private GameManager GM;
     bool upgrade1 = false;
-
+    
     private void Awake()
     {
+
+        GM = FindObjectOfType<GameManager>();
         reticleUI.gameObject.SetActive(false);
     }
+   
     private void Update()
     {
         if (upgrade1)
@@ -41,29 +44,26 @@ public class GameObjectPlacement : MonoBehaviour
             if (hit.collider.name == "PlayArea(Clone)")
             {
                 reticleUI.color = Color.red;
+
+                if (Input.touchCount > 0)
+                {
+                    theTouch = Input.GetTouch(0);
+
+                    if (theTouch.phase == TouchPhase.Ended)
+                    {
+                        if (GM.Coins >= GM.basicTowerCost)
+                        {
+                            Instantiate(placedGameObject, hit.point, Quaternion.identity);
+                            GM.Coins -= GM.basicTowerCost;
+                            reticleUI.gameObject.SetActive(false);
+                            upgrade1 = false;
+                        }
+                    }
+                }
             }
             else
             {
                 reticleUI.color = Color.white;
-            }
-            
-            if (Input.touchCount > 0)
-            {
-                theTouch = Input.GetTouch(0);
-
-                if (theTouch.phase == TouchPhase.Ended)
-                {
-                    switch (hit.collider.name)
-                    {
-                        case "PlayArea(Clone)":
-
-                            debugText.text = "hit THE FKING PLANE";
-                            Instantiate(placedGameObject, hit.point, Quaternion.identity);
-                            reticleUI.gameObject.SetActive(false);
-                            upgrade1 = false;
-                            break;
-                    }
-                }
             }
         }
     }

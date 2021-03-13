@@ -9,11 +9,11 @@ public class Projectile : MonoBehaviour
         Destroy(gameObject, 2);
     }
 
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.gameObject.tag == "Platform")
-    //    {
-    //        Destroy(this.gameObject);
-    //    }
-    //}
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Platform")
+        {
+            Destroy(this.gameObject);
+        }
+    }
 }

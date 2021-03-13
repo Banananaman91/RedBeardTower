@@ -16,8 +16,8 @@ public class Tower : MonoBehaviour
         if (targetToShoot)
         {
             Vector3 direction = targetToShoot.transform.position - transform.position;
-                transform.rotation = Quaternion.Slerp(transform.rotation,
-                    Quaternion.LookRotation(direction), 5* Time.smoothDeltaTime);
+            transform.rotation = Quaternion.Slerp(transform.rotation,
+                Quaternion.LookRotation(direction), 5* Time.smoothDeltaTime);
         }
         else
         {
