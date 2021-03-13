@@ -10,7 +10,6 @@ public class Billboard : MonoBehaviour
     void LateUpdate()
     {
         camPos = GameObject.FindGameObjectWithTag("MainCamera").transform;
-        Debug.Log(camPos.position);
         transform.LookAt(transform.position + camPos.forward);
     }
 }

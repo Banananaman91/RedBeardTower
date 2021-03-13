@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Tower : MonoBehaviour
 {
-    public GameObject shootPoint;
+    public GameObject[] shootPoint;
     public GameObject projectile;
     public int projectileForce = 10;
     public float rateOfFire = 2;
@@ -26,12 +26,12 @@ public class Tower : MonoBehaviour
         }
     }
 
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Enemy")
         {
             targetToShoot = other.gameObject;
-
             InvokeRepeating("Shoot", 0, rateOfFire);
         }
         else if(other == null)
@@ -47,18 +47,23 @@ public class Tower : MonoBehaviour
         {
             targetToShoot = null;
             CancelInvoke("Shoot");
+            //Destroy(projectile);
         }
     }
 
     public void Shoot()
-    {
-        var projectileInstance = Instantiate(projectile, shootPoint.transform.position, shootPoint.transform.rotation);
-        if (targetToShoot)
+    {   
+        foreach (var point in shootPoint)
         {
-            Vector3 aim = (targetToShoot.transform.position - transform.position).normalized;
-            var projectileRb = projectileInstance.GetComponent<Rigidbody>();
-            projectileRb.AddForce(aim * projectileForce);
-            //projectileRb.AddForce(shootPoint.transform.forward * projectileForce);
+            if (targetToShoot)
+            {
+                Vector3 aim = (targetToShoot.transform.position - transform.position).normalized;
+                var projectileInstance = Instantiate(projectile, point.transform.position, point.transform.rotation);
+            
+                var projectileRb = projectileInstance.GetComponent<Rigidbody>();
+                projectileRb.AddForce(aim * projectileForce);
+                //projectileRb.AddForce(shootPoint.transform.forward * projectileForce);
+            }
         }
     }
 

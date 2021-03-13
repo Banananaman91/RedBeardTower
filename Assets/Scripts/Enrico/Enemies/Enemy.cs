@@ -11,16 +11,15 @@ public class Enemy : MonoBehaviour
     public HealthBar HealthBar;
     public int maxHealth = 100;
     public int currentHealth;
-    
-    private void Start()
+
+    private void Awake()
     {
         currentHealth = maxHealth;
         HealthBar.SetMaxHealth(maxHealth);
     }
-
-    private void Update()
+    private void Start()
     {
-        SetDestination(); // to put on Awake???
+        SetDestination();
     }
 
     private void SetDestination()
@@ -45,7 +44,7 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Bullet")
+        if (other.gameObject.CompareTag("Bullet"))
         {
             TakeDamageAndDestroy(10);  // Add damage according to tower type??
         }

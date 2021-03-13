@@ -39,7 +39,6 @@ public class PlaneObjectPlacement : MonoBehaviour
     void Update()
     {
         if(!TryGetTouchPos(out Vector2 touchPosition)) { return; }
-
         if (raycastManager.Raycast(touchPosition, hits, TrackableType.PlaneWithinPolygon))
         {
             var hitPose = hits[0].pose;

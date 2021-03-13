@@ -4,10 +4,16 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    public bool isEnemyHit = false;
-
     private void Update()
     {
-        Destroy(gameObject, 5);
+        Destroy(gameObject, 2);
     }
+
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.gameObject.tag == "Platform")
+    //    {
+    //        Destroy(this.gameObject);
+    //    }
+    //}
 }

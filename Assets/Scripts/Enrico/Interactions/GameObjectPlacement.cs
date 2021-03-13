@@ -14,7 +14,8 @@ public class GameObjectPlacement : MonoBehaviour
 
     public GameObject placedGameObject;
     private  Vector3 touchPositon;
-   
+
+    bool upgrade1 = false;
 
     private void Awake()
     {
@@ -22,18 +23,69 @@ public class GameObjectPlacement : MonoBehaviour
     }
     private void Update()
     {
-
+        if (upgrade1)
+        {
+            CameraRaycastOnUpdate();
+        }
     }
 
-    public void CameraRaycast()
+
+    public void CameraRaycastOnUpdate()
+    {
+        // TO DO: loop around all touch inputs.. works better.
+        reticleUI.gameObject.SetActive(true);
+        RaycastHit hit;
+
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, Mathf.Infinity))
+        {
+            if (hit.collider.name == "PlayArea(Clone)")
+            {
+                reticleUI.color = Color.red;
+            }
+            else
+            {
+                reticleUI.color = Color.white;
+            }
+            
+            if (Input.touchCount > 0)
+            {
+                theTouch = Input.GetTouch(0);
+
+                if (theTouch.phase == TouchPhase.Ended)
+                {
+                    switch (hit.collider.name)
+                    {
+                        case "PlayArea(Clone)":
+
+                            debugText.text = "hit THE FKING PLANE";
+                            Instantiate(placedGameObject, hit.point, Quaternion.identity);
+                            reticleUI.gameObject.SetActive(false);
+                            upgrade1 = false;
+                            break;
+                    }
+                }
+            }
+        }
+    }
+
+    public void PlaceUpgrade1()
+    {
+        if(upgrade1 == false)
+        {
+            upgrade1 = true;
+        }
+    }
+
+
+    private void CameraRaycast()
     {
         // TO DO: loop around all touch inputs.. works better.
         reticleUI.gameObject.SetActive(true);
 
-        if (Input.touchCount > 0 )
+        if (Input.touchCount > 0)
         {
             theTouch = Input.GetTouch(0);
-            if(theTouch.phase == TouchPhase.Ended)
+            if (theTouch.phase == TouchPhase.Ended)
             {
                 RaycastHit hit;
 
@@ -49,7 +101,7 @@ public class GameObjectPlacement : MonoBehaviour
                             debugText.text = "hit THE FKING PLANE";
                             reticleUI.color = Color.red;
                             Instantiate(placedGameObject, hit.point, Quaternion.identity);
-                            
+
                             break;
                     }
                 }
@@ -63,8 +115,9 @@ public class GameObjectPlacement : MonoBehaviour
                 reticleUI.gameObject.SetActive(false);
             }
         }
-       
+
     }
+
     private void TouchPositioRaycast()
     {
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
