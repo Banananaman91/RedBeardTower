@@ -29,7 +29,9 @@ public class Tower : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Enemy")
+        if (other.gameObject.tag == "SimpleEnemy" ||
+            other.gameObject.tag == "HardEnemy" ||
+            other.gameObject.tag == "FastEnemy")
         {
             targetToShoot = other.gameObject;
             InvokeRepeating("Shoot", 0, rateOfFire);

@@ -24,7 +24,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1613528283058592286}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 100, z: 2}
   m_Children: []
@@ -43,6 +43,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb054d8b98d196d47a0a87b9b6cf9ce7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startPos: {fileID: 0}
-  basicEnemy: {fileID: 4424477077263169011, guid: 610001c8450ce27428d7d603f9c434ac,
-    type: 3}
+  waves:
+  - enemy: {fileID: 4424477077263169011, guid: 610001c8450ce27428d7d603f9c434ac, type: 3}
+    count: 2
+    rate: 1.7
+  - enemy: {fileID: 4424477077263169011, guid: 4cfa63431164ccd4dbac601b32d25f53, type: 3}
+    count: 3
+    rate: 2
+  - enemy: {fileID: 4424477077263169011, guid: 6fe697341673c374fb23047c3ef8e98c, type: 3}
+    count: 4
+    rate: 1
+  timeBetweenWaves: 5
+  waveCountDownText: {fileID: 0}

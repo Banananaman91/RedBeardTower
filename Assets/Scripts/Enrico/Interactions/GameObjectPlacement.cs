@@ -15,18 +15,20 @@ public class GameObjectPlacement : MonoBehaviour
     public GameObject placedGameObject;
     private  Vector3 touchPositon;
     private GameManager GM;
-    bool upgrade1 = false;
-    
+    bool towerPlaced = false;
+    public GameObject UiPanel;
+    private  GameObject prefabReference;
+
+
     private void Awake()
     {
-
         GM = FindObjectOfType<GameManager>();
         reticleUI.gameObject.SetActive(false);
     }
    
     private void Update()
     {
-        if (upgrade1)
+        if (towerPlaced)
         {
             CameraRaycastOnUpdate();
         }
@@ -43,37 +45,43 @@ public class GameObjectPlacement : MonoBehaviour
         {
             if (hit.collider.name == "PlayArea(Clone)")
             {
-                reticleUI.color = Color.red;
+                reticleUI.color = Color.green;
 
                 if (Input.touchCount > 0)
                 {
                     theTouch = Input.GetTouch(0);
-
+                    if(theTouch.phase == TouchPhase.Began)
+                    {
+                       
+                    }
                     if (theTouch.phase == TouchPhase.Ended)
                     {
                         if (GM.Coins >= GM.basicTowerCost)
                         {
-                            Instantiate(placedGameObject, hit.point, Quaternion.identity);
+                            Instantiate(prefabReference, hit.point, Quaternion.identity);
                             GM.Coins -= GM.basicTowerCost;
                             reticleUI.gameObject.SetActive(false);
-                            upgrade1 = false;
+                            towerPlaced = false;
                         }
                     }
                 }
             }
             else
             {
-                reticleUI.color = Color.white;
+                reticleUI.color = Color.red;
             }
         }
     }
 
-    public void PlaceUpgrade1()
+    public void PlaceTower(string prefabToLoad)
     {
-        if(upgrade1 == false)
+
+        UiPanel.SetActive(false);
+        if(towerPlaced == false)
         {
-            upgrade1 = true;
+            towerPlaced = true;
         }
+        prefabReference = Resources.Load("Prefabs/Towers/" + prefabToLoad) as GameObject;
     }
 
 

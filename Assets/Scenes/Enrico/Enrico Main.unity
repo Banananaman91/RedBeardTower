@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -216,6 +216,18 @@ Transform:
 --- !u!114 &222714173 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2779708760399479585, guid: 74e005d07da46ff4289be882df924a57,
+    type: 3}
+  m_PrefabInstance: {fileID: 1167133291873833971}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &257648767 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 257648767, guid: 74e005d07da46ff4289be882df924a57,
     type: 3}
   m_PrefabInstance: {fileID: 1167133291873833971}
   m_PrefabAsset: {fileID: 0}
@@ -357,6 +369,8 @@ MonoBehaviour:
   reticleUI: {fileID: 1529826540}
   placedGameObject: {fileID: 7796053344074204272, guid: 41387518579d6a44a8011cbd0229a303,
     type: 3}
+  UiPanel: {fileID: 2105620089}
+  ttt: {fileID: 0}
 --- !u!1001 &1325401034
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -424,16 +438,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyManager
       objectReference: {fileID: 0}
-    - target: {fileID: 1613528283058592286, guid: 29c0a4cb94dce6649bd624a5f9d979d4,
+    - target: {fileID: 1613528283058592287, guid: 29c0a4cb94dce6649bd624a5f9d979d4,
         type: 3}
-      propertyPath: m_IsActive
-      value: 1
+      propertyPath: waveCountDownText
+      value: 
+      objectReference: {fileID: 257648767}
+    - target: {fileID: 1613528283058592287, guid: 29c0a4cb94dce6649bd624a5f9d979d4,
+        type: 3}
+      propertyPath: timeBetweenWaves
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1613528283058592287, guid: 29c0a4cb94dce6649bd624a5f9d979d4,
         type: 3}
-      propertyPath: startPos
+      propertyPath: waves.Array.data[0].enemy
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 4424477077263169011, guid: 610001c8450ce27428d7d603f9c434ac,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29c0a4cb94dce6649bd624a5f9d979d4, type: 3}
 --- !u!114 &1529826540 stripped
@@ -563,7 +583,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1575207841}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.17, z: 0}
+  m_LocalPosition: {x: 0, y: 0.53, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1300218742}
@@ -725,6 +745,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2105620089 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8969949161722174508, guid: 74e005d07da46ff4289be882df924a57,
+    type: 3}
+  m_PrefabInstance: {fileID: 1167133291873833971}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &725734937005395395
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -789,6 +815,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 725734937520111989, guid: 99c65763d97c39141b3c3fc01d474729,
         type: 3}
+      propertyPath: waypoints.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 725734937520111989, guid: 99c65763d97c39141b3c3fc01d474729,
+        type: 3}
       propertyPath: playerHealtBar
       value: 
       objectReference: {fileID: 6389119522219377511}
@@ -797,6 +828,30 @@ PrefabInstance:
       propertyPath: cointText
       value: 
       objectReference: {fileID: 222714173}
+    - target: {fileID: 725734937520111989, guid: 99c65763d97c39141b3c3fc01d474729,
+        type: 3}
+      propertyPath: waypoinPrefab
+      value: 
+      objectReference: {fileID: 2778918222781270370, guid: 799450bb9a0d08c47aa81a5a7b6a8336,
+        type: 3}
+    - target: {fileID: 725734937520111989, guid: 99c65763d97c39141b3c3fc01d474729,
+        type: 3}
+      propertyPath: waypoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 2778918222781270370, guid: 799450bb9a0d08c47aa81a5a7b6a8336,
+        type: 3}
+    - target: {fileID: 725734937520111989, guid: 99c65763d97c39141b3c3fc01d474729,
+        type: 3}
+      propertyPath: waypoints.Array.data[1]
+      value: 
+      objectReference: {fileID: 2778918222781270370, guid: 799450bb9a0d08c47aa81a5a7b6a8336,
+        type: 3}
+    - target: {fileID: 725734937520111989, guid: 99c65763d97c39141b3c3fc01d474729,
+        type: 3}
+      propertyPath: waypoints.Array.data[2]
+      value: 
+      objectReference: {fileID: 2778918222781270370, guid: 799450bb9a0d08c47aa81a5a7b6a8336,
+        type: 3}
     - target: {fileID: 725734937520111990, guid: 99c65763d97c39141b3c3fc01d474729,
         type: 3}
       propertyPath: m_Name
@@ -818,8 +873,13 @@ PrefabInstance:
       objectReference: {fileID: 1300218746}
     - target: {fileID: 1167133292559890725, guid: 74e005d07da46ff4289be882df924a57,
         type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: PlaceUpgrade1
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167133292559890725, guid: 74e005d07da46ff4289be882df924a57,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Tower
       objectReference: {fileID: 0}
     - target: {fileID: 1167133293644487873, guid: 74e005d07da46ff4289be882df924a57,
         type: 3}
@@ -940,6 +1000,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5773032808566660234, guid: 74e005d07da46ff4289be882df924a57,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1300218746}
+    - target: {fileID: 5773032808566660234, guid: 74e005d07da46ff4289be882df924a57,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlaceTower
+      objectReference: {fileID: 0}
+    - target: {fileID: 5773032808566660234, guid: 74e005d07da46ff4289be882df924a57,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5773032808566660234, guid: 74e005d07da46ff4289be882df924a57,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Tower 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 74e005d07da46ff4289be882df924a57, type: 3}

@@ -9,6 +9,9 @@ TagManager:
   - StartPos
   - Enemy
   - Bullet
+  - SimpleEnemy
+  - FastEnemy
+  - HardEnemy
   layers:
   - Default
   - TransparentFX
@@ -18,7 +21,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - PlayArea
   - 
   - 
   - 

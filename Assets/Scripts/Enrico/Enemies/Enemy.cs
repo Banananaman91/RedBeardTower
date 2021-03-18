@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour
     private GameObject goal;
     private GameManager GM;
     private int currentHealth;
+    public GameObject VFX;
 
     private void Awake()
     {
@@ -44,7 +45,11 @@ public class Enemy : MonoBehaviour
         if(currentHealth == 0)
         {
             GM.Coins += coinValue;
+            var lastPos = transform.position;
             Destroy(this.gameObject, 0.1f);
+            var deathEffect = Instantiate(VFX, lastPos, Quaternion.identity);
+            EnemyManager.enemiesAlive--;
+            Destroy(deathEffect, 2);
         }
     }
 
@@ -52,7 +57,6 @@ public class Enemy : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Bullet"))
         {
-
             TakeDamageAndDestroy(10);  // Add damage according to tower type??
         }
     }

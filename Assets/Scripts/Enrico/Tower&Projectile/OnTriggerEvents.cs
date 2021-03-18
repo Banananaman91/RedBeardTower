@@ -14,11 +14,15 @@ public class OnTriggerEvents : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Enemy")
+        if(other.gameObject.tag == "SimpleEnemy" ||
+            other.gameObject.tag == "HardEnemy" ||
+            other.gameObject.tag == "FastEnemy")
         {
+           
             Destroy(other.gameObject);
+            EnemyManager.enemiesAlive--;
            // GM.Lives -= EnemyManager.basicEnemyDamage;
-            GM.PlayerCurrentLives -= EnemyManager.basicEnemyDamage;
+            GM.PlayerCurrentLives -= EnemyManager.basicEnemyDamage; ///Change to enemy script to hold the damagetaken value?? so each enemy has its own?
             GM.playerHealtBar.SetHealth(GM.PlayerCurrentLives);
         }
         // Add  More for other enemies and damamge.

@@ -16,8 +16,8 @@ GameObject:
   - component: {fileID: 2080834103660264786}
   - component: {fileID: -3657790460619694010}
   m_Layer: 0
-  m_Name: NewEnemy
-  m_TagString: Enemy
+  m_Name: FastEnemy
+  m_TagString: FastEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0b558511121864249890600d2bb914e1, type: 2}
+  - {fileID: 2100000, guid: ee07b62592c520d42a9e7076969b44c5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -98,7 +98,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HealthBar: {fileID: 2651890337106919819}
   maxHealth: 100
-  coinValue: 10
+  coinValue: 150
+  VFX: {fileID: 9015147656583088966, guid: ed05bc908e4e2e94badb1f0a8c9f3d11, type: 3}
 --- !u!195 &4424477077263169001
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -109,7 +110,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 0.1
+  m_Speed: 0.2
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
