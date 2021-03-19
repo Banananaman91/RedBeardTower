@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Android;
+using System;
 
 public class GameObjectPlacement : MonoBehaviour
 {
@@ -12,13 +13,13 @@ public class GameObjectPlacement : MonoBehaviour
     public Image reticleUI;
     private Touch theTouch;
 
-    public GameObject placedGameObject;
+    //public GameObject placedGameObject;
     private  Vector3 touchPositon;
     private GameManager GM;
     bool towerPlaced = false;
     public GameObject UiPanel;
     private  GameObject prefabReference;
-
+    GameObject t;
 
     private void Awake()
     {
@@ -32,8 +33,28 @@ public class GameObjectPlacement : MonoBehaviour
         {
             CameraRaycastOnUpdate();
         }
+
+        ShowInfo();
     }
 
+    private void ShowInfo()
+    {
+        RaycastHit hit;
+
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, Mathf.Infinity))
+        {
+            debugText.text = hit.collider.name;
+            if (hit.collider.name == "Pivot" || hit.collider.name == "Pivot")
+            {
+                 t = hit.transform.GetChild(1).gameObject;
+                 t.SetActive(true);
+            }
+            else
+            {
+                t.SetActive(false);
+            }
+        }
+    }
 
     public void CameraRaycastOnUpdate()
     {
@@ -52,13 +73,14 @@ public class GameObjectPlacement : MonoBehaviour
                     theTouch = Input.GetTouch(0);
                     if(theTouch.phase == TouchPhase.Began)
                     {
-                       
+                       // fk knows!
                     }
                     if (theTouch.phase == TouchPhase.Ended)
                     {
                         if (GM.Coins >= GM.basicTowerCost)
                         {
-                            Instantiate(prefabReference, hit.point, Quaternion.identity);
+                             Instantiate(prefabReference, hit.point, Quaternion.identity);
+
                             GM.Coins -= GM.basicTowerCost;
                             reticleUI.gameObject.SetActive(false);
                             towerPlaced = false;
@@ -108,7 +130,7 @@ public class GameObjectPlacement : MonoBehaviour
 
                             debugText.text = "hit THE FKING PLANE";
                             reticleUI.color = Color.red;
-                            Instantiate(placedGameObject, hit.point, Quaternion.identity);
+                            //Instantiate(placedGameObject, hit.point, Quaternion.identity);
 
                             break;
                     }

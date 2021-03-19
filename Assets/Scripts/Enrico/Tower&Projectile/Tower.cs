@@ -11,6 +11,17 @@ public class Tower : MonoBehaviour
     public float rateOfFire = 2;
     public GameObject targetToShoot;
 
+    public GameObject radiusSphere;
+    private float radius;
+
+    private void Awake()
+    {
+        //PUT IN UPDATE FOR DYNAMIC SCALING
+        radius = GetComponent<SphereCollider>().radius;
+        radiusSphere.transform.localScale = new Vector3(radius, radius, radius)*2; 
+
+    }
+
     private void Update()
     {
         if (targetToShoot)
@@ -64,7 +75,6 @@ public class Tower : MonoBehaviour
             
                 var projectileRb = projectileInstance.GetComponent<Rigidbody>();
                 projectileRb.AddForce(aim * projectileForce);
-                //projectileRb.AddForce(shootPoint.transform.forward * projectileForce);
             }
         }
     }
