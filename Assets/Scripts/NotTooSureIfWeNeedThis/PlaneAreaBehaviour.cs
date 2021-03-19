@@ -19,7 +19,7 @@ public class PlaneAreaBehaviour : MonoBehaviour
 
     private void OnEnable()
     {
-        PG = FindObjectOfType<PathGenerator>();
+        //PG = FindObjectOfType<PathGenerator>();
         arPlane.boundaryChanged += ArPlane_BoundaryChanged;
     }
 
