@@ -33,6 +33,7 @@ namespace VoxelTerrain.Voxel
         public int Seed => seed;
         public WorldInfo WorldInfo => _worldInfo;
         public PlaneAreaBehaviour _planeAreaBehaviour;
+        private Camera CamMain => Camera.main;
 
 
         #region Unity Functions
@@ -41,13 +42,13 @@ namespace VoxelTerrain.Voxel
             WorldData.Engine = this;
         }
 
-        public void StartGeneration()
+        public void StartGeneration(Vector3 position)
         {
             _xDistance = _planeAreaBehaviour.arPlaneExt.y < _worldInfo.Distance ? _planeAreaBehaviour.arPlaneExt.y : _worldInfo.Distance;
             
             _zDistance = _planeAreaBehaviour.arPlaneExt.x < _worldInfo.Distance ? _planeAreaBehaviour.arPlaneExt.x : _worldInfo.Distance;
-            
-            Position = _planeAreaBehaviour.arPlaneTransform.position;
+
+            Position = position;
             
             var corner = new Vector3(-_xDistance, Position.y, -_zDistance);
             _maxMagnitude = (Position - corner).magnitude;
@@ -124,16 +125,25 @@ namespace VoxelTerrain.Voxel
 
         private void Update()
         {
-            if (!_planeAreaBehaviour) _planeAreaBehaviour = FindObjectOfType<PlaneAreaBehaviour>();
+            if (!_planeAreaBehaviour)
+            {
+                var ray = CamMain.ViewportPointToRay(CamMain.ScreenToViewportPoint(Input.mousePosition));
+        
+                if (!Physics.Raycast(ray, out var hit)) return;
+
+                var plane = hit.collider.GetComponent<PlaneAreaBehaviour>();
+
+                if (!plane) return;
+
+                _planeAreaBehaviour = plane;
+                
+                StartGeneration(hit.point);
+
+                //_planeAreaBehaviour = FindObjectOfType<PlaneAreaBehaviour>();
+            }
 
             if (!_startGenerating) return;
 
-            // _xDistance = _planeAreaBehaviour.arPlaneExt.y < _worldInfo.Distance ? _planeAreaBehaviour.arPlaneExt.y : _worldInfo.Distance;
-            //
-            // _zDistance = _planeAreaBehaviour.arPlaneExt.x < _worldInfo.Distance ? _planeAreaBehaviour.arPlaneExt.x : _worldInfo.Distance;
-            //
-            // Position = _planeAreaBehaviour.arPlaneTransform.position;
-            
             var point = NearestChunk(Position);
 
             for (var x = -_xDistance; x <= _xDistance; x += ChunkSize)
