@@ -52,7 +52,11 @@ MonoBehaviour:
   _chunkInfo: {fileID: 7941170911782372763}
   _voxelTypeHeights: {fileID: 7941170911782372760}
   _worldGeneration: {fileID: 7941170911782372765}
-  _noiseScale: 0
+  _noiseScale: 0.2
+  seed: 1
+  Position: {x: 0, y: 0, z: 0}
+  _planeAreaBehaviour: {fileID: 0}
+  _enrico: 1
 --- !u!114 &7941170911782372760
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65,9 +69,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b3abc42d208768438f0c76f50de5335, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stoneDepth: 5
-  _snowHeight: 10
-  _caveStartHeight: -5
+  _stoneDepth: 0.1
+  _snowHeight: 0.1
+  _caveStartHeight: -0.01
 --- !u!114 &7941170911782372763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -82,7 +86,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _chunkPrefab: {fileID: 5807394119334776112, guid: 9b9ced7c5de5dc94dbe09cac2c11378b,
     type: 3}
-  _voxelSize: 1
+  _voxelSize: 0.01
 --- !u!114 &7941170911782372762
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95,10 +99,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99accc2e46a2126489cb11755851112f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _material: {fileID: 2100000, guid: 07a6c4bab4ac7e44cab965e02712bc17, type: 2}
-  _distance: 64
-  _height: 0
+  _distance: 1.5
   _origin: {fileID: 0}
+  _groundLevel: 0.75
 --- !u!114 &7941170911782372765
 MonoBehaviour:
   m_ObjectHideFlags: 0

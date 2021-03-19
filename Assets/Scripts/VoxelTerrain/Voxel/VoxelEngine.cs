@@ -32,27 +32,30 @@ namespace VoxelTerrain.Voxel
         public float NoiseScale => _noiseScale;
         public int Seed => seed;
         public WorldInfo WorldInfo => _worldInfo;
-        public PlaneAreaBehaviour _planeAreaBehaviour;
 
+        private Camera CamMain => Camera.main;
+        private bool _gotPlane;
+        [SerializeField] bool _enrico;
 
         #region Unity Functions
         private void Awake()
         {
             WorldData.Engine = this;
+            StartGeneration(Vector3.zero, 64, 64);
         }
 
-        public void StartGeneration()
+        public void StartGeneration(Vector3 position, float xDist, float zDist)
         {
-            _xDistance = _planeAreaBehaviour.arPlaneExt.y < _worldInfo.Distance ? _planeAreaBehaviour.arPlaneExt.y : _worldInfo.Distance;
-            
-            _zDistance = _planeAreaBehaviour.arPlaneExt.x < _worldInfo.Distance ? _planeAreaBehaviour.arPlaneExt.x : _worldInfo.Distance;
-            
-            Position = _planeAreaBehaviour.arPlaneTransform.position;
+            _zDistance  = zDist < _worldInfo.Distance ? zDist : _worldInfo.Distance;
+
+            _xDistance  = xDist < _worldInfo.Distance ? xDist : _worldInfo.Distance;
+
+            Position = position;
             
             var corner = new Vector3(-_xDistance, Position.y, -_zDistance);
             _maxMagnitude = (Position - corner).magnitude;
             
-            _worldGeneration.GenerateWorld(_planeAreaBehaviour.transform.position, _xDistance, _zDistance, Position.y, _chunkInfo.VoxelSize);
+            _worldGeneration.GenerateWorld(Position, _xDistance, _zDistance, Position.y, _chunkInfo.VoxelSize);
             _startGenerating = true;
         }
 
@@ -124,16 +127,41 @@ namespace VoxelTerrain.Voxel
 
         private void Update()
         {
-            if (!_planeAreaBehaviour) _planeAreaBehaviour = FindObjectOfType<PlaneAreaBehaviour>();
+            if (!_enrico)
+            {
+                if (!_gotPlane)
+                {
+                    var ray = CamMain.ViewportPointToRay(CamMain.ScreenToViewportPoint(Input.mousePosition));
 
+                    if (!Physics.Raycast(ray, out var hit)) return;
+
+                    float xDist;
+                    float zDist;
+
+                    var plane = hit.collider.GetComponent<PlaneAreaBehaviour>();
+
+                    if (!plane)
+                    {
+                       var newPlane = hit.collider.GetComponent<StartHolder>();
+
+                        if (!newPlane) return;
+
+                        xDist = newPlane.transform.localScale.x;
+                        zDist = newPlane.transform.localScale.z;
+                    }
+                    else
+                    {
+                        xDist = plane.arPlaneExt.x;
+                        zDist = plane.arPlaneExt.z;
+                    }
+
+                    _gotPlane = true;
+
+                    StartGeneration(hit.point, xDist, zDist);
+                }
+            }
             if (!_startGenerating) return;
 
-            // _xDistance = _planeAreaBehaviour.arPlaneExt.y < _worldInfo.Distance ? _planeAreaBehaviour.arPlaneExt.y : _worldInfo.Distance;
-            //
-            // _zDistance = _planeAreaBehaviour.arPlaneExt.x < _worldInfo.Distance ? _planeAreaBehaviour.arPlaneExt.x : _worldInfo.Distance;
-            //
-            // Position = _planeAreaBehaviour.arPlaneTransform.position;
-            
             var point = NearestChunk(Position);
 
             for (var x = -_xDistance; x <= _xDistance; x += ChunkSize)
@@ -148,7 +176,7 @@ namespace VoxelTerrain.Voxel
                     if (c == null)
                     {
                         c = LoadChunkAt(pointToCheck);
-                        
+
                         if (c != null) SpawnChunk(c, new Vector3(point.x + x, point.y - ChunkHeight / 2, point.z + z));
                     }
                 }

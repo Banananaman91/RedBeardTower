@@ -34,10 +34,10 @@ public class GameObjectPlacement : MonoBehaviour
             CameraRaycastOnUpdate();
         }
 
-        ShowInfo();
+       //ShowTowerRadius();
     }
 
-    private void ShowInfo()
+    private void ShowTowerRadius()
     {
         RaycastHit hit;
 
