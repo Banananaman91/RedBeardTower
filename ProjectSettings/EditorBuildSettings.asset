@@ -4,5 +4,12 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
-  m_configObjects: {}
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Enrico/Enrico Main.unity
+    guid: d6723e3a30c1a644ba72cf5f53f25ab4
+  m_configObjects:
+    UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 65b54a1de6ace164c8230db5c10dd54a,
+      type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 42c6539ca0d05f84e88b2d8a29eb798b,
+      type: 2}

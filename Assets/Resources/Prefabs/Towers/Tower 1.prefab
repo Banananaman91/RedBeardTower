@@ -11,13 +11,13 @@ GameObject:
   - component: {fileID: 2070309336975537999}
   - component: {fileID: 8742920216964467382}
   - component: {fileID: 4790515889305481310}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2070309336975537999
 Transform:
   m_ObjectHideFlags: 0
@@ -326,6 +326,7 @@ MonoBehaviour:
   projectileForce: 50
   rateOfFire: 0.2
   targetToShoot: {fileID: 0}
+  radiusSphere: {fileID: 0}
 --- !u!135 &7796053344631182650
 SphereCollider:
   m_ObjectHideFlags: 0
