@@ -5,11 +5,13 @@ using UnityEngine;
 public class OnTriggerEvents : MonoBehaviour
 {
     GameManager GM;
+    AudioSource audio;
 
     private void Awake()
     {
         if(GM != null) { return; }
         GM = FindObjectOfType<GameManager>();
+        audio = GetComponent<AudioSource>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -18,7 +20,7 @@ public class OnTriggerEvents : MonoBehaviour
             other.gameObject.tag == "HardEnemy" ||
             other.gameObject.tag == "FastEnemy")
         {
-           
+            audio.Play();
             Destroy(other.gameObject);
             EnemyManager.enemiesAlive--;
            // GM.Lives -= EnemyManager.basicEnemyDamage;

@@ -15,12 +15,14 @@ public class Enemy : MonoBehaviour
     private GameManager GM;
     private int currentHealth;
     public GameObject VFX;
+    AudioSource audio;
 
     private void Awake()
     {
         GM = FindObjectOfType<GameManager>();
         currentHealth = maxHealth;
         HealthBar.SetMaxHealth(maxHealth);
+        audio = GetComponent<AudioSource>();
     }
 
     private void Start()
@@ -45,8 +47,9 @@ public class Enemy : MonoBehaviour
         if(currentHealth == 0)
         {
             GM.Coins += coinValue;
+            audio.Play();
             var lastPos = transform.position;
-            Destroy(this.gameObject, 0.1f);
+            Destroy(this.gameObject, 0.3f);
             var deathEffect = Instantiate(VFX, lastPos, Quaternion.identity);
             EnemyManager.enemiesAlive--;
             Destroy(deathEffect, 2);

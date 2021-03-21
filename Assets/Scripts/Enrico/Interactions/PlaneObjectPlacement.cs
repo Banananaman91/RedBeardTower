@@ -15,7 +15,8 @@ public class PlaneObjectPlacement : MonoBehaviour
     private ARRaycastManager raycastManager;
     [SerializeField] VoxelEngine engine;
     Vector2 touchPos;
-    public Text debugText; 
+    public Text debugText;
+    public GameObject GameCanvas;
 
     static List<ARRaycastHit> hits = new List<ARRaycastHit>();
 
@@ -24,6 +25,7 @@ public class PlaneObjectPlacement : MonoBehaviour
     {
         raycastManager = GetComponent<ARRaycastManager>();
         aRPlaneManager = GetComponent<ARPlaneManager>();
+        GameCanvas.SetActive(false);
     }
 
     bool TryGetTouchPos( out Vector2 touchPosition)
@@ -51,7 +53,8 @@ public class PlaneObjectPlacement : MonoBehaviour
                 if (engine)
                 {
                     debugText.text = "in the if";
-                    engine.StartGeneration(hitPose.position, spwanedObjs.transform.localScale.x, spwanedObjs.transform.localScale.z);
+                    engine.StartGeneration(hitPose.position, hitPose.position.x, hitPose.position.z);
+                    //engine.StartGeneration(hitPose.position, spwanedObjs.transform.localScale.x, spwanedObjs.transform.localScale.z);
                 }   
                 
                 foreach (var plane in aRPlaneManager.trackables)
@@ -59,6 +62,7 @@ public class PlaneObjectPlacement : MonoBehaviour
                     plane.gameObject.SetActive(false);
                     aRPlaneManager.enabled = !aRPlaneManager.enabled;
                 }
+                GameCanvas.SetActive(true);
             }
         }
     }

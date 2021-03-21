@@ -13,12 +13,14 @@ public class Tower : MonoBehaviour
 
     public GameObject radiusSphere;
     private float radius;
+    AudioSource audio;
 
     private void Awake()
     {
         //PUT IN UPDATE FOR DYNAMIC SCALING
         radius = GetComponent<SphereCollider>().radius;
-        radiusSphere.transform.localScale = new Vector3(radius, radius, radius)*2; 
+        radiusSphere.transform.localScale = new Vector3(radius, radius, radius)*2;
+        audio = GetComponent<AudioSource>();
 
     }
 
@@ -72,7 +74,7 @@ public class Tower : MonoBehaviour
             {
                 Vector3 aim = (targetToShoot.transform.position - transform.position).normalized;
                 var projectileInstance = Instantiate(projectile, point.transform.position, point.transform.rotation);
-            
+                audio.PlayOneShot(audio.clip);
                 var projectileRb = projectileInstance.GetComponent<Rigidbody>();
                 projectileRb.AddForce(aim * projectileForce);
             }
