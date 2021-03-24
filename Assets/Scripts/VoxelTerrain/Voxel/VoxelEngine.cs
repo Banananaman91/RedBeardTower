@@ -17,6 +17,8 @@ namespace VoxelTerrain.Voxel
         [SerializeField] private WorldGenerationFunctions _worldGeneration;
         [SerializeField] private float _noiseScale;
         [SerializeField] private int seed;
+        [SerializeField] private GameObject _start;
+        [SerializeField] private GameObject _end;
 
 
         private float _maxMagnitude;
@@ -40,15 +42,21 @@ namespace VoxelTerrain.Voxel
         private void Awake()
         {
             WorldData.Engine = this;
+            
         }
 
         public void StartGeneration(Vector3 position)
         {
-            _xDistance = _planeAreaBehaviour.arPlaneExt.y < _worldInfo.Distance ? _planeAreaBehaviour.arPlaneExt.y : _worldInfo.Distance;
+            _xDistance = _planeAreaBehaviour.arPlaneExt.x < _worldInfo.Distance ? _planeAreaBehaviour.arPlaneExt.x : _worldInfo.Distance;
             
-            _zDistance = _planeAreaBehaviour.arPlaneExt.x < _worldInfo.Distance ? _planeAreaBehaviour.arPlaneExt.x : _worldInfo.Distance;
+            _zDistance = _planeAreaBehaviour.arPlaneExt.y < _worldInfo.Distance ? _planeAreaBehaviour.arPlaneExt.y : _worldInfo.Distance;
 
             Position = position;
+
+            var startPosition = _start.transform.position;
+            startPosition.z = _zDistance;
+            var endPosition = _end.transform.position;
+            endPosition.z = -_zDistance;
             
             var corner = new Vector3(-_xDistance, Position.y, -_zDistance);
             _maxMagnitude = (Position - corner).magnitude;

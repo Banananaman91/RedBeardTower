@@ -10,11 +10,11 @@ namespace VoxelTerrain.Voxel
         public MeshFilter MeshFilter => GetComponent<MeshFilter>();
         private Vector3 Position => new Vector3(transform.position.x, _engine.Position.y - (Chunk.ChunkHeight * _engine.ChunkInfo.VoxelSize) / 2, transform.position.z);
 
-        private void Update()
-        {
-            if (_engine.WithinRange(Position)) return;
-        
-            _engine.RemoveChunkAt(Position);
-        }
+        // private void Update()
+        // {
+        //     if (_engine.WithinRange(Position)) return;
+        //
+        //     _engine.RemoveChunkAt(Position);
+        // }
     }
 }

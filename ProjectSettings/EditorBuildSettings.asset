@@ -5,12 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
-    path: Assets/Scenes/VoxelAR.unity
-    guid: e91ae3162595e264c854df21a8beef92
   - enabled: 0
     path: Assets/Scenes/Enrico/Enrico Main.unity
     guid: d6723e3a30c1a644ba72cf5f53f25ab4
+  - enabled: 1
+    path: Assets/Scenes/Enrico/Ians Main.unity
+    guid: 56e10a652c5289a498ba3f1dfdf0acee
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 65b54a1de6ace164c8230db5c10dd54a,
       type: 2}
