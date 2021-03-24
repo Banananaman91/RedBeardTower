@@ -1,6 +1,7 @@
 ﻿using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.XR.ARFoundation;
 using VoxelTerrain.Voxel.Dependencies;
 using VoxelTerrain.Voxel.InfoData;
 
@@ -36,6 +37,8 @@ namespace VoxelTerrain.Voxel
         public WorldInfo WorldInfo => _worldInfo;
         public PlaneAreaBehaviour _planeAreaBehaviour;
         private Camera CamMain => Camera.main;
+        
+        [SerializeField] private ARPlaneManager aRPlaneManager;
 
 
         #region Unity Functions
@@ -62,6 +65,11 @@ namespace VoxelTerrain.Voxel
             _maxMagnitude = (Position - corner).magnitude;
             
             _worldGeneration.GenerateWorld(_planeAreaBehaviour.transform.position, _xDistance, _zDistance, Position.y, _chunkInfo.VoxelSize);
+            foreach(var plane in aRPlaneManager.trackables)
+            {
+                plane.gameObject.SetActive(false);
+                aRPlaneManager.enabled = !aRPlaneManager.enabled;
+            }
             _startGenerating = true;
         }
 
