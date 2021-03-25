@@ -60,6 +60,7 @@ MonoBehaviour:
   _end: {fileID: 0}
   Position: {x: 0, y: 0, z: 0}
   _planeAreaBehaviour: {fileID: 0}
+  aRPlaneManager: {fileID: 0}
 --- !u!114 &7941170911782372760
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -158,7 +159,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2113165021190413931}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.0052999994, z: -0.487}
+  m_LocalPosition: {x: 0, y: -0.318, z: -0.487}
   m_LocalScale: {x: 1, y: 0.099999994, z: 1}
   m_Children: []
   m_Father: {fileID: 1219288309473230980}
@@ -226,7 +227,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2298625062811545820}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 0, y: 0.0051999995, z: 0.492}
+  m_LocalPosition: {x: 0, y: -0.318, z: 0.492}
   m_LocalScale: {x: 0.099999994, y: 0, z: 0.099999994}
   m_Children: []
   m_Father: {fileID: 1219288309473230980}

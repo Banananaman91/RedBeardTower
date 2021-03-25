@@ -53,7 +53,7 @@ namespace VoxelTerrain.Voxel
             mesh.name = ChunkName;
 
             monoGo.MeshFilter.sharedMesh = mesh;
-            monoGo.MeshCollider.sharedMesh = mesh;
+           // monoGo.MeshCollider.sharedMesh = mesh;
         }
 
         public static int PosToIndex(int x, int y, int z) => z * (ChunkSize) * (ChunkHeight) + y * (ChunkSize) + x;
