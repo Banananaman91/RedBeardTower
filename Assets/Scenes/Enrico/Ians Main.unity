@@ -854,6 +854,16 @@ PrefabInstance:
       propertyPath: _end
       value: 
       objectReference: {fileID: 155020744}
+    - target: {fileID: 1219288309473230983, guid: 2b7228255036a30479393ef9a76b8464,
+        type: 3}
+      propertyPath: gameSceneCanvas
+      value: 
+      objectReference: {fileID: 65170923}
+    - target: {fileID: 1219288309473230983, guid: 2b7228255036a30479393ef9a76b8464,
+        type: 3}
+      propertyPath: seed
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3201260455974037446, guid: 2b7228255036a30479393ef9a76b8464,
         type: 3}
       propertyPath: m_Size.y
@@ -1042,6 +1052,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: PlaceTowerButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167133292086896741, guid: 74e005d07da46ff4289be882df924a57,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1167133292559890725, guid: 74e005d07da46ff4289be882df924a57,
         type: 3}

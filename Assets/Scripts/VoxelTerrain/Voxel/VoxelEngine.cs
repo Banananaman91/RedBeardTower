@@ -40,13 +40,12 @@ namespace VoxelTerrain.Voxel
         private Camera CamMain => Camera.main;
         
         [SerializeField] private ARPlaneManager aRPlaneManager;
+        
 
         #region Unity Functions
         private void Awake()
         {
             WorldData.Engine = this;
-
-        
         }
 
         public void StartGeneration(Vector3 position)
@@ -75,7 +74,7 @@ namespace VoxelTerrain.Voxel
 
 
             _startGenerating = true;
-
+            
         }
 
         public Vector3 NearestChunk(Vector3 pos)
@@ -160,7 +159,7 @@ namespace VoxelTerrain.Voxel
                 _planeAreaBehaviour = plane;
 
                 StartGeneration(hit.point);
-
+              
                 //_planeAreaBehaviour = FindObjectOfType<PlaneAreaBehaviour>();
             }
 
