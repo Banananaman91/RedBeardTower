@@ -12,9 +12,9 @@ namespace VoxelTerrain.Voxel.Dependencies
         public void GenerateWorld(Vector3 origin, float xDistance, float zDistance, float yPos, float size)
         {
             _chunkGenerator.Engine = _engine;
-            for (float x = origin.x - xDistance; x <= origin.x + xDistance; x += Chunk.ChunkSize)
+            for (float x = origin.x - xDistance; x <= origin.x + xDistance; x += size)
             {
-                for (float z = origin.z - zDistance; z <= origin.z + zDistance; z += Chunk.ChunkSize)
+                for (float z = origin.z - zDistance; z <= origin.z + zDistance; z += size)
                 {
                     GenerateChunkData(new Vector3(x, yPos, z));
                 }

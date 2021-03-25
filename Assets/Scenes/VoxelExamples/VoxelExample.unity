@@ -99,7 +99,7 @@ LightmapSettings:
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 112000000, guid: 6fd8527611e8c2244a769a4626a64502,
     type: 2}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -153,6 +153,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MousePointer
+      objectReference: {fileID: 0}
+    - target: {fileID: 1561188667314874129, guid: a11bfa0f202cd184e949e58420e9eee5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1831589574907140677, guid: a11bfa0f202cd184e949e58420e9eee5,
         type: 3}
@@ -539,35 +544,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: VoxelEngine
       objectReference: {fileID: 0}
-    - target: {fileID: 1219288309473230983, guid: 2b7228255036a30479393ef9a76b8464,
-        type: 3}
-      propertyPath: _noiseScale
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 1219288309473230983, guid: 2b7228255036a30479393ef9a76b8464,
-        type: 3}
-      propertyPath: seed
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7941170911782372762, guid: 2b7228255036a30479393ef9a76b8464,
         type: 3}
       propertyPath: _origin
       value: 
       objectReference: {fileID: 1562540283}
-    - target: {fileID: 7941170911782372762, guid: 2b7228255036a30479393ef9a76b8464,
-        type: 3}
-      propertyPath: _distance
-      value: 64
-      objectReference: {fileID: 0}
-    - target: {fileID: 7941170911782372762, guid: 2b7228255036a30479393ef9a76b8464,
-        type: 3}
-      propertyPath: _groundLevel
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7941170911782372763, guid: 2b7228255036a30479393ef9a76b8464,
-        type: 3}
-      propertyPath: _voxelSize
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b7228255036a30479393ef9a76b8464, type: 3}
