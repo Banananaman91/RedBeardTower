@@ -21,11 +21,11 @@ public class PlaneObjectPlacement : MonoBehaviour
     static List<ARRaycastHit> hits = new List<ARRaycastHit>();
 
     ARPlaneManager aRPlaneManager;
-    private void Awake()
+    private void OnEnable()
     {
         raycastManager = GetComponent<ARRaycastManager>();
         aRPlaneManager = GetComponent<ARPlaneManager>();
-        GameCanvas.SetActive(false);
+        GameCanvas.SetActive(false); 
     }
 
     bool TryGetTouchPos( out Vector2 touchPosition)
@@ -53,7 +53,7 @@ public class PlaneObjectPlacement : MonoBehaviour
                 if (engine)
                 {
                     debugText.text = "in the if";
-                    engine.StartGeneration(hitPose.position, hitPose.position.x, hitPose.position.z);
+                   
                     //engine.StartGeneration(hitPose.position, spwanedObjs.transform.localScale.x, spwanedObjs.transform.localScale.z);
                 }   
                 

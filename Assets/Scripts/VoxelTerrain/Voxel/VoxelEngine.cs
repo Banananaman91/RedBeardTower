@@ -41,11 +41,6 @@ namespace VoxelTerrain.Voxel
         
         [SerializeField] private ARPlaneManager aRPlaneManager;
 
-
-        private Camera CamMain => Camera.main;
-        private bool _gotPlane;
-        [SerializeField] bool _enrico;
-
         #region Unity Functions
         private void Awake()
         {
@@ -68,7 +63,7 @@ namespace VoxelTerrain.Voxel
             var newStart = new Vector3(position.x, position.y, position.z - _zDistance);
             _start.transform.position = newStart;
             
-            var newEnd = new Vector3(position.x, position.y, position.z + _zDistance);
+            var newEnd = new Vector3(position.x, position.y, position.z + (_zDistance-ChunkSize));
             _end.transform.position = newEnd;
 
             _worldGeneration.GenerateWorld(position, _xDistance, _zDistance, Position.y -(ChunkHeight / 2), ChunkSize);

@@ -7,7 +7,7 @@ namespace VoxelTerrain.Voxel
     public class Chunk
     {
         public const int ChunkSize = 16; //Leave at this size
-        public const int ChunkHeight = 64; //This should be 16 too, but I wanted taller chunks
+        public const int ChunkHeight = 16; //This should be 16 too, but I wanted taller chunks
         public float[] Voxels;
         private VoxelEngine Engine;
         private string ChunkName;
@@ -53,7 +53,7 @@ namespace VoxelTerrain.Voxel
             mesh.name = ChunkName;
 
             monoGo.MeshFilter.sharedMesh = mesh;
-           // monoGo.MeshCollider.sharedMesh = mesh;
+            monoGo.MeshCollider.sharedMesh = mesh;
         }
 
         public static int PosToIndex(int x, int y, int z) => z * (ChunkSize) * (ChunkHeight) + y * (ChunkSize) + x;

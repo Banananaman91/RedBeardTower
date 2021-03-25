@@ -10,7 +10,7 @@ public class EnemyManager : MonoBehaviour
     public float timeBetweenWaves = 5f;
     public Text waveCountDownText;
 
-    private float countDown = 0f;
+    private float countDown = 5f;
     private int waveIndex;
     public static GameObject startPos;
     public static int basicEnemyDamage = 1;

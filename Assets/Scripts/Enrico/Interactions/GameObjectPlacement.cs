@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Android;
 using System;
+using VoxelTerrain.Voxel;
 
 public class GameObjectPlacement : MonoBehaviour
 {
@@ -53,9 +54,10 @@ public class GameObjectPlacement : MonoBehaviour
 
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, Mathf.Infinity))
         {
-            if (hit.collider.name == "PlayArea(Clone)")
+            debugText.text = hit.collider.name;
+            if (hit.collider.name == "PlayArea(Clone)" || hit.collider.GetComponent<MonoChunk>())
             {
-               // reticleUI.color = Color.green;
+                reticleUI.color = Color.green;
 
                 if (Input.touchCount > 0)
                 {
@@ -80,7 +82,7 @@ public class GameObjectPlacement : MonoBehaviour
             }
             else
             {
-               // reticleUI.color = Color.red;
+                reticleUI.color = Color.red;
             }
         }
     }
@@ -92,7 +94,8 @@ public class GameObjectPlacement : MonoBehaviour
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, Mathf.Infinity))
         {
             debugText.text = hit.collider.name;
-            if (hit.collider.name == "PlayArea(Clone)")
+            
+            if (hit.collider.name == "PlayArea(Clone)" || hit.collider.GetComponent<MonoChunk>())
             {
                 reticleUI.color = Color.green;
 
@@ -130,7 +133,6 @@ public class GameObjectPlacement : MonoBehaviour
         ChooseTowerUiPanel.SetActive(true);
         reticleUI.gameObject.SetActive(true);
         Time.timeScale = 0;
-
     }
 
     private void CameraRaycast()
