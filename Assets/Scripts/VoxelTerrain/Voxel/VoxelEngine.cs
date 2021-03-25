@@ -35,37 +35,41 @@ namespace VoxelTerrain.Voxel
         public float NoiseScale => _noiseScale;
         public int Seed => seed;
         public WorldInfo WorldInfo => _worldInfo;
+
         public PlaneAreaBehaviour _planeAreaBehaviour;
         private Camera CamMain => Camera.main;
         
         [SerializeField] private ARPlaneManager aRPlaneManager;
 
 
+        private Camera CamMain => Camera.main;
+        private bool _gotPlane;
+        [SerializeField] bool _enrico;
+
         #region Unity Functions
         private void Awake()
         {
             WorldData.Engine = this;
-           
+
+        
         }
 
         public void StartGeneration(Vector3 position)
         {
             _xDistance = _planeAreaBehaviour.arPlaneExt.x < _worldInfo.Distance ? _planeAreaBehaviour.arPlaneExt.x : _worldInfo.Distance;
             
-            _zDistance =  _worldInfo.Distance;
+            _zDistance =  _planeAreaBehaviour.arPlaneExt.y < _worldInfo.Distance ? _planeAreaBehaviour.arPlaneExt.y : _worldInfo.Distance;
 
             Position = position;
 
-            var startPosition = _start.transform.position;
-            startPosition.z = _zDistance;
-            var endPosition = _end.transform.position;
-            endPosition.z = -_zDistance;
-            
             var corner = new Vector3(-_xDistance, Position.y, -_zDistance);
             _maxMagnitude = (Position - corner).magnitude;
 
             var newStart = new Vector3(position.x, position.y, position.z - _zDistance);
             _start.transform.position = newStart;
+            
+            var newEnd = new Vector3(position.x, position.y, position.z + _zDistance);
+            _end.transform.position = newEnd;
 
             _worldGeneration.GenerateWorld(position, _xDistance, _zDistance, Position.y -(ChunkHeight / 2), ChunkSize);
             foreach(var plane in aRPlaneManager.trackables)
@@ -73,6 +77,7 @@ namespace VoxelTerrain.Voxel
                 plane.gameObject.SetActive(false);
                 aRPlaneManager.enabled = !aRPlaneManager.enabled;
             }
+
 
             _startGenerating = true;
 
@@ -146,6 +151,7 @@ namespace VoxelTerrain.Voxel
 
         private void Update()
         {
+
             if (!_planeAreaBehaviour)
             {
                 var ray = CamMain.ViewportPointToRay(CamMain.ScreenToViewportPoint(Input.mousePosition));
@@ -163,6 +169,7 @@ namespace VoxelTerrain.Voxel
                 //_planeAreaBehaviour = FindObjectOfType<PlaneAreaBehaviour>();
             }
 
+
             if (!_startGenerating) return;
 
             var point = NearestChunk(Position);
@@ -179,8 +186,10 @@ namespace VoxelTerrain.Voxel
                     if (c == null)
                     {
                         c = LoadChunkAt(pointToCheck);
+
                         
                         if (c != null) SpawnChunk(c, new Vector3(point.x + x, point.y, point.z + z));
+
                     }
                 }
             }

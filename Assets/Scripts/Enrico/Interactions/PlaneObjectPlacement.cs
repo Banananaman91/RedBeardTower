@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
-
+using VoxelTerrain.Voxel;
+using UnityEngine.UI;
 [RequireComponent(typeof(ARRaycastManager))]
 public class PlaneObjectPlacement : MonoBehaviour
 {
@@ -12,8 +13,10 @@ public class PlaneObjectPlacement : MonoBehaviour
 
     private GameObject spwanedObjs;
     private ARRaycastManager raycastManager;
-
+    [SerializeField] VoxelEngine engine;
     Vector2 touchPos;
+    public Text debugText;
+    public GameObject GameCanvas;
 
     static List<ARRaycastHit> hits = new List<ARRaycastHit>();
 
@@ -22,6 +25,7 @@ public class PlaneObjectPlacement : MonoBehaviour
     {
         raycastManager = GetComponent<ARRaycastManager>();
         aRPlaneManager = GetComponent<ARPlaneManager>();
+        GameCanvas.SetActive(false);
     }
 
     bool TryGetTouchPos( out Vector2 touchPosition)
@@ -46,12 +50,19 @@ public class PlaneObjectPlacement : MonoBehaviour
             if( spwanedObjs == null)
             {
                 spwanedObjs = Instantiate(ObjToSpawn, hitPose.position, hitPose.rotation);
-
-                foreach(var plane in aRPlaneManager.trackables)
+                if (engine)
+                {
+                    debugText.text = "in the if";
+                    engine.StartGeneration(hitPose.position, hitPose.position.x, hitPose.position.z);
+                    //engine.StartGeneration(hitPose.position, spwanedObjs.transform.localScale.x, spwanedObjs.transform.localScale.z);
+                }   
+                
+                foreach (var plane in aRPlaneManager.trackables)
                 {
                     plane.gameObject.SetActive(false);
                     aRPlaneManager.enabled = !aRPlaneManager.enabled;
                 }
+                GameCanvas.SetActive(true);
             }
         }
     }

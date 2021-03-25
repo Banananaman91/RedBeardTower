@@ -17,7 +17,8 @@ public class GameObjectPlacement : MonoBehaviour
     private  Vector3 touchPositon;
     private GameManager GM;
     bool towerPlaced = false;
-    public GameObject UiPanel;
+    bool showRadius = false;
+    public GameObject ChooseTowerUiPanel;
     private  GameObject prefabReference;
     GameObject t;
 
@@ -25,48 +26,36 @@ public class GameObjectPlacement : MonoBehaviour
     {
         GM = FindObjectOfType<GameManager>();
         reticleUI.gameObject.SetActive(false);
+        ChooseTowerUiPanel.SetActive(false);
     }
    
     private void Update()
     {
+        
         if (towerPlaced)
         {
             CameraRaycastOnUpdate();
         }
-
-        ShowInfo();
-    }
-
-    private void ShowInfo()
-    {
-        RaycastHit hit;
-
-        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, Mathf.Infinity))
+        
+        if (showRadius)
         {
-            debugText.text = hit.collider.name;
-            if (hit.collider.name == "Pivot" || hit.collider.name == "Pivot")
-            {
-                 t = hit.transform.GetChild(1).gameObject;
-                 t.SetActive(true);
-            }
-            else
-            {
-                t.SetActive(false);
-            }
+            ShowTowerRadius();
         }
+
     }
+
 
     public void CameraRaycastOnUpdate()
     {
         // TO DO: loop around all touch inputs.. works better.
-        reticleUI.gameObject.SetActive(true);
+       // reticleUI.gameObject.SetActive(true);
         RaycastHit hit;
 
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, Mathf.Infinity))
         {
             if (hit.collider.name == "PlayArea(Clone)")
             {
-                reticleUI.color = Color.green;
+               // reticleUI.color = Color.green;
 
                 if (Input.touchCount > 0)
                 {
@@ -79,26 +68,55 @@ public class GameObjectPlacement : MonoBehaviour
                     {
                         if (GM.Coins >= GM.basicTowerCost)
                         {
-                             Instantiate(prefabReference, hit.point, Quaternion.identity);
-
+                            Instantiate(prefabReference, hit.point, Quaternion.identity);
+                            Time.timeScale = 1;
                             GM.Coins -= GM.basicTowerCost;
                             reticleUI.gameObject.SetActive(false);
                             towerPlaced = false;
+                            showRadius = false;
                         }
                     }
                 }
             }
             else
             {
-                reticleUI.color = Color.red;
+               // reticleUI.color = Color.red;
             }
         }
     }
 
+    private void ShowTowerRadius()
+    {
+        RaycastHit hit;
+
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, Mathf.Infinity))
+        {
+            debugText.text = hit.collider.name;
+            if (hit.collider.name == "PlayArea(Clone)")
+            {
+                reticleUI.color = Color.green;
+
+            }
+            else 
+            {
+                reticleUI.color = Color.red; 
+            }
+
+            if (hit.collider.name == "Pivot" )
+            {
+                 t = hit.transform.GetChild(1).gameObject;
+                 t.SetActive(true);
+            }
+            else 
+            {
+                t.SetActive(false);
+            }
+        }
+    }
+   
     public void PlaceTower(string prefabToLoad)
     {
-
-        UiPanel.SetActive(false);
+        ChooseTowerUiPanel.SetActive(false);
         if(towerPlaced == false)
         {
             towerPlaced = true;
@@ -106,6 +124,14 @@ public class GameObjectPlacement : MonoBehaviour
         prefabReference = Resources.Load("Prefabs/Towers/" + prefabToLoad) as GameObject;
     }
 
+    public void PlaceTowerButton()
+    {
+        showRadius = true;
+        ChooseTowerUiPanel.SetActive(true);
+        reticleUI.gameObject.SetActive(true);
+        Time.timeScale = 0;
+
+    }
 
     private void CameraRaycast()
     {
